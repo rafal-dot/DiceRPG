@@ -1,8 +1,8 @@
 # `DiceRPG`
 ![Example use](images/DiceRPG_main.png)
 
-DiceRPG / "Dice Roll Password Generator" and DiceKeysAlike- dice rolls based,
-easy to validate, generators of very strong random passwords
+DiceRPG / "Dice Roll Password Generator" and DiceKeysAlike are dice rolls
+based, easy to validate, generators of very strong random passwords
 
 # INTRODUCTION
 
@@ -45,7 +45,7 @@ uses not only (i) dice faces, but also their (ii)  directions and (iii) order.
 In short, this means that it takes slightly less than 3x dice rolls to generate
 a password of similar quality than the case of `DiceRPG`. For passwords longer
 than 8 characters, this is 1 dice roll or less per character of the password.
-Documentation under construction.
+Documentation is under construction.
 
 # INSTALLATION
 
@@ -120,10 +120,14 @@ python DiceKeyAlike.py
 ```
 
 When you input:
+
 1. `251346414622` for dice faces,
+
 2. `NNSNEEWEWSSE` for dice directions,
-3. `3-11-6-12-10-5-8-7-1-9-4-2` for their order,
-result will be password `SkAm)2dj#vT&q`.
+
+3. `3-11-6-12-10-5-8-7-1-9-4-2` for their order.
+
+Result will be password `SkAm)2dj#vT&q`.
 
 # Entropy considerations
 
