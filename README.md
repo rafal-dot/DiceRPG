@@ -129,6 +129,9 @@ When you input:
 
 Result will be password `SkAm)2dj#vT&q`.
 
+On Pythonista/iOS or Pydroid 3/Android code can be just pasted into IDE and
+run.
+
 # Entropy considerations
 
 The table below summarizes the number of dice rolls necessary to draw a
@@ -304,9 +307,10 @@ dice rolls      -->   1      v  2 v   v   3     v   4         5
 ## How to use it securely?
 
 Please note that every good quality and sophisticated software when generating
-keys uses additional securit measures in place such as preventing the memory
-being leaked (for example memory being swapped to the media storage) or
-overwritting unused memory before freeing it, etc. So this method of generating
+keys uses additional security measures in place, such as preventing the memory
+being leaked (for example, declaring memory as non-swappable to avoid storing
+memory on media, or overwriting unused memory before freeing it to avoid other
+threads accessing the contents of that memory). So this method of generating
 passwords is secure as long as you are able to ensure complete control over
 computer/smart device, as one of main goals of this software was simplicity.
 

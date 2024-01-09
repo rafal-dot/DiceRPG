@@ -26,7 +26,48 @@ You should have received a copy of the GNU Affero General Public License along w
 
 import re
 from math import floor, ceil, log10, factorial
-from permutation import Permutation
+# from permutation import Permutation
+
+
+def lehmer(perm):
+    """
+        Calculate the number corresponding to the permutation order from the Lehmer Code
+
+        Any `n`-element set of distinguishable elements can be ordered in `n!` different ways (permutations). This
+        procedure assigns a unique number to each permutation. For more details see:
+        https://en.wikipedia.org/wiki/Lehmer_code
+
+        The code of this procedure is based on the source of Permutation module: https://github.com/jwodder/permutation/
+        This procedure was placed here to avoid references to this module, which makes it much easier to use this script
+        on mobile devices, with Pythonista/iOS or Pydroid 3/Android. If you prefer to use Permutation module, remove
+        this procedure and uncomment these lines:
+# from permutation import Permutation
+        and replace line
+random_number = lehmer(dices_order)
+        with line
+# random_number = Permutation(*dices_order).lehmer(len(dices_order))
+
+
+    :param perm: list with permutation, for example `[1, 4, 3, 5, 2]`
+    :return: number corresponding to the Lehmer Code (`15` for input provided above)
+    """
+    n = len(perm)
+    code = [0] * n  # Initialize Lehmer Code list of zeros
+
+    for i in range(n):
+        count = 0
+        for j in range(i + 1, n):
+            if perm[j] < perm[i]:
+                count += 1  # Count elements smaller than the current element in the permutation
+        code[i] = count  # Assign the count as Lehmer Code for the current position in permutation
+
+    n = len(code)
+    number = 0
+    # Iterating through Lehmer code elements
+    for i in range(n):
+        number += code[i] * factorial(n - 1 - i)  # Calculating the number corresponding to the permutation
+    return number
+
 
 # Characters set for machine-storred, human-retyped passwords. For suggestions for (i) handwritten passwords or
 # (ii) passwords stored and processed entirely by machine, see the documentation
@@ -53,7 +94,8 @@ dice rolls --+----->    v 1 v  v    2    v    3     v
 
     # Calculate random part from order of dices (=rolls!)
     dices_order = [eval(i) for i in re.split("[-+*/=:;., ]", dice_order_string)]
-    random_number = Permutation(*dices_order).lehmer(len(dices_order))
+    #     random_number = Permutation(*dices_order).lehmer(len(dices_order))
+    random_number = lehmer(dices_order)
 
     # Calculate random part from rolls of dices (6^rolls)
     for roll_char in dice_rolls_string:
