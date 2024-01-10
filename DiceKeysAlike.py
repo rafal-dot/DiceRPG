@@ -29,7 +29,7 @@ from math import floor, ceil, log10, factorial
 # from permutation import Permutation
 
 
-def lehmer(perm):
+def lehmer(permutation):
     """
         Calculate the number corresponding to the permutation order from the Lehmer Code
 
@@ -48,25 +48,26 @@ random_number = lehmer(dices_order)
 # random_number = Permutation(*dices_order).lehmer(len(dices_order))
 
 
-    :param perm: list with permutation, for example `[1, 4, 3, 5, 2]`
+    :param permutation: list with permutation, for example `[1, 4, 3, 5, 2]`
     :return: number corresponding to the Lehmer Code (`15` for input provided above)
     """
-    n = len(perm)
-    code = [0] * n  # Initialize Lehmer Code list of zeros
+    n = len(permutation)
+    lehmer_code = [0] * n  # Initialize Lehmer Code list of zeros
 
     for i in range(n):
         count = 0
         for j in range(i + 1, n):
-            if perm[j] < perm[i]:
+            if permutation[j] < permutation[i]:
                 count += 1  # Count elements smaller than the current element in the permutation
-        code[i] = count  # Assign the count as Lehmer Code for the current position in permutation
+        lehmer_code[i] = count  # Assign the count as Lehmer Code for the current position in permutation
 
-    n = len(code)
-    number = 0
+    n = len(lehmer_code)
+    lehmer_number = 0
     # Iterating through Lehmer code elements
     for i in range(n):
-        number += code[i] * factorial(n - 1 - i)  # Calculating the number corresponding to the permutation
-    return number
+        # Calculating the number corresponding to the permutation
+        lehmer_number += lehmer_code[i] * factorial(n - 1 - i)
+    return lehmer_number
 
 
 # Characters set for machine-storred, human-retyped passwords. For suggestions for (i) handwritten passwords or
